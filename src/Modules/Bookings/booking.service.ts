@@ -2,11 +2,17 @@ import Car from "../Car/car.model";
 import { TBooking } from "./booking.interface";
 import Booking from "./booking.model";
 
-export const createBookingInDB = async (bookingData: TBooking) => {
+export const createBookingInDB = async (bookingData: any) => {
   const newBooking = new Booking(bookingData);
-  await newBooking.save();
+  await (await (await newBooking.save()).populate("user")).populate("car");
   return newBooking;
 };
+
+// export const createBookingInDB = async (bookingData: TBooking) => {
+//   const newBooking = new Booking(bookingData);
+//   await newBooking.save();
+//   return newBooking;
+// };
 
 export const getAllBookingsFromDB = async (carId: string, date: string) => {
   const bookings = await Booking.find({ car: carId, date })

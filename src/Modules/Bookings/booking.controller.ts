@@ -12,7 +12,23 @@ declare global {
 
 export const createBooking = async (req: Request, res: Response) => {
   try {
-    const bookingData = req.body;
+    const { carId, date, startTime } = req.body;
+    const userId = req?.user?.id;
+    // console.log(req?.user?.id);
+
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    const bookingData = {
+      date,
+      user: userId,
+      car: carId,
+      startTime,
+      endTime: null,
+      totalCost: 0,
+    };
+
     const newBooking = await BookingServices.createBookingInDB(bookingData);
     res.status(200).json({
       success: true,
@@ -52,7 +68,8 @@ export const getAllBookings = async (req: Request, res: Response) => {
 
 export const getUserBookings = async (req: Request, res: Response) => {
   try {
-    const userId = req.user?._id;
+    const userId = req?.user?.id;
+    console.log(req.user);
     if (!userId) {
       return res.status(401).json({ message: "Unauthorized" });
     }

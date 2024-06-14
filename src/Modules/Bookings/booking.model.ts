@@ -12,5 +12,11 @@ const bookingSchema = new Schema<TBooking>(
   },
   { timestamps: true }
 );
+
 const Booking = model<TBooking>("Booking", bookingSchema);
 export default Booking;
+
+// export const BookingACar = model<TACarBooking>(
+//   "BookingACar",
+//   bookingACarSchema
+// );

@@ -52,7 +52,19 @@ export const deleteCar = async (req: Request, res: Response) => {
     const carId = req.params.id;
     const deletedCar = await CarServices.deleteCarInDB(carId);
     if (deletedCar) {
-      res.status(200).json(deletedCar);
+      res.status(200).json({
+        success: true,
+        statusCode: 200,
+        message: "Car Deleted successfully",
+        deletedCar,
+      });
+
+      // res.status(200).json({
+      //
+      //   ,
+      //  ,
+      //   data: deleteCar,
+      // });
     } else {
       res.status(404).json({ message: "Car not found" });
     }

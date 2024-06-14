@@ -6,13 +6,14 @@ import {
   getCar,
   updateCar,
 } from "./car.controller";
+import { isAdmin, isAuthenticated } from "../../app/auth/auth";
 
 const router = Router();
 
-router.post("/", createCar);
+router.post("/", isAdmin, createCar);
 router.get("/", getAllCars);
 router.get("/:id", getCar);
-router.put("/:id", updateCar);
-router.delete("/:id", deleteCar);
+router.put("/:id", isAdmin, updateCar);
+router.delete("/:id", isAdmin, deleteCar);
 
 export const CarRoutes = router;

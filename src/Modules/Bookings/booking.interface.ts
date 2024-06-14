@@ -8,3 +8,9 @@ export interface TBooking extends Document {
   endTime: string;
   totalCost: number;
 }
+
+// export type TACarBooking = {
+//   carId: Schema.Types.ObjectId;
+//   date: Date;
+//   startTime: string;
+// };

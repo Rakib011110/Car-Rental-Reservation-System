@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import config from "../config";
-import httpStatus from "http-status";
 import catchAsynce from "../../utils/catchAsynce";
 
 declare global {
@@ -11,13 +10,15 @@ declare global {
     }
   }
 }
-
 export const isAuthenticated = catchAsynce(
   async (req: Request, res: Response, next: NextFunction) => {
-    const token = req.headers.authorization?.split(" ")[1];
-    if (!token) {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res.status(401).json({ message: "Unauthorized" });
     }
+
+    const token = authHeader.split(" ")[1];
+
     try {
       const decoded = jwt.verify(
         token,
@@ -34,6 +35,7 @@ export const isAuthenticated = catchAsynce(
 export const isAdmin = catchAsynce(
   async (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization?.split(" ")[1];
+    console.log(token);
     if (!token) {
       return res.status(401).json({ message: "Unauthorized" });
     }

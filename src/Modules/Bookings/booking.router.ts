@@ -3,9 +3,9 @@ import { BookingController } from "./booking.controller";
 import express from "express";
 
 const router = express.Router();
-router.post("/", BookingController.createBooking);
+router.post("/", isAuthenticated, BookingController.createBooking);
 router.get("/", BookingController.getAllBookings);
-router.get("/my-bookings", BookingController.getUserBookings);
+router.get("/my-bookings", isAuthenticated, BookingController.getUserBookings);
 router.put(
   "/cars/return",
   //   isAuthenticated,
