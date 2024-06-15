@@ -58,13 +58,6 @@ export const deleteCar = async (req: Request, res: Response) => {
         message: "Car Deleted successfully",
         deletedCar,
       });
-
-      // res.status(200).json({
-      //
-      //   ,
-      //  ,
-      //   data: deleteCar,
-      // });
     } else {
       res.status(404).json({ message: "Car not found" });
     }

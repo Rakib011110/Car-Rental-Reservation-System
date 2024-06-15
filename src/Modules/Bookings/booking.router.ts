@@ -8,8 +8,8 @@ router.get("/", BookingController.getAllBookings);
 router.get("/my-bookings", isAuthenticated, BookingController.getUserBookings);
 router.put(
   "/cars/return",
-  //   isAuthenticated,
-  //   isAdmin,
+  isAuthenticated,
+  isAdmin,
   BookingController.returnCar
 );
 

@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.CarRoutes = void 0;
+const express_1 = require("express");
+const car_controller_1 = require("./car.controller");
+const auth_1 = require("../../app/auth/auth");
+const router = (0, express_1.Router)();
+router.post("/", auth_1.isAdmin, car_controller_1.createCar);
+router.get("/", car_controller_1.getAllCars);
+router.get("/:id", car_controller_1.getCar);
+router.put("/:id", auth_1.isAdmin, car_controller_1.updateCar);
+router.delete("/:id", auth_1.isAdmin, car_controller_1.deleteCar);
+exports.CarRoutes = router;
