@@ -76,12 +76,6 @@ const deleteCar = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 message: "Car Deleted successfully",
                 deletedCar,
             });
-            // res.status(200).json({
-            //
-            //   ,
-            //  ,
-            //   data: deleteCar,
-            // });
         }
         else {
             res.status(404).json({ message: "Car not found" });

@@ -11,8 +11,5 @@ const router = express_1.default.Router();
 router.post("/", auth_1.isAuthenticated, booking_controller_1.BookingController.createBooking);
 router.get("/", booking_controller_1.BookingController.getAllBookings);
 router.get("/my-bookings", auth_1.isAuthenticated, booking_controller_1.BookingController.getUserBookings);
-router.put("/cars/return", 
-//   isAuthenticated,
-//   isAdmin,
-booking_controller_1.BookingController.returnCar);
+router.put("/cars/return", auth_1.isAuthenticated, auth_1.isAdmin, booking_controller_1.BookingController.returnCar);
 exports.BookingRoute = router;
